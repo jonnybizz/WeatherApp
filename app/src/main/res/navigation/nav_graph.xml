@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/searchWeatherFragment">
+
+    <fragment
+        android:id="@+id/searchWeatherFragment"
+        android:name="com.jonnybizz.weatherapp.view.fragments.SearchWeatherFragment"
+        android:label="fragment_search_weather"
+        tools:layout="@layout/fragment_search_weather">
+        <action
+            android:id="@+id/goToList"
+            app:destination="@id/weatherListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weatherListFragment"
+        android:name="com.jonnybizz.weatherapp.view.fragments.WeatherListFragment"
+        android:label="fragment_weather_list"
+        tools:layout="@layout/fragment_weather_list">
+        <action
+            android:id="@+id/goToDetail"
+            app:destination="@id/weatherDetailFragment" />
+        <argument
+            android:name="weatherContainerList"
+            app:argType="com.jonnybizz.weatherapp.model.WeatherContainer[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/weatherDetailFragment"
+        android:name="com.jonnybizz.weatherapp.view.fragments.WeatherDetailFragment"
+        android:label="fragment_weather_detail"
+        tools:layout="@layout/fragment_weather_detail">
+        <argument
+            android:name="weatherContainer"
+            app:argType="com.jonnybizz.weatherapp.model.WeatherContainer" />
+    </fragment>
+</navigation>

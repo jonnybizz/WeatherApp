@@ -3,4 +3,6 @@
     <string name="searcch_hint">City Name</string>
     <string name="lookup">Lookup</string>
     <string name="search_hint">City Name</string>
+    <string name="args_temp">Temp: %s</string>
+    <string name="na">N/A</string>
 </resources>

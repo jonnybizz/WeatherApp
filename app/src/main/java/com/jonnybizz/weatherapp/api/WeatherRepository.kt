@@ -1,24 +1,20 @@
 package com.jonnybizz.weatherapp.api
 
-import com.jonnybizz.weatherapp.models.WeatherResponse
-import io.reactivex.Single
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import com.jonnybizz.weatherapp.model.WeatherResponse
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class WeatherRepository {
-    var baseUrl = "https://api.openweathermap.org/data/2.5/"
-    var retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(baseUrl)
-        .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .build()
+class WeatherRepository @Inject constructor(
+    private val weatherService: WeatherService
+) {
 
-    var weatherApiService: ApiService = retrofit.create(ApiService::class.java)
+    fun getWeather(
+        city: String, units: String
+    ): Single<WeatherResponse> = weatherService.getWeatherData(city, units = units)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
 
-    fun getWeather(city:String, apiKey:String):Single<WeatherResponse>{
-        return weatherApiService.getWeatherData(city, apiKey)
-
-    }
 }
 
