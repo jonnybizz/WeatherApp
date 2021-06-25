@@ -1,8 +1,6 @@
 package com.jonnybizz.weatherapp.model
 
 
-import com.google.gson.annotations.SerializedName
-
 data class City(
     val coord: Coord? = null,
     val country: String? = null,
