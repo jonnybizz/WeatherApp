@@ -22,6 +22,10 @@ class WeatherDetailFragment : Fragment(R.layout.fragment_weather_detail) {
             val na = root.context.getString(R.string.na)
 
             tvTemp.text = weatherContainer.main?.temp?.toString() ?: na
+            tvTempDescription.text = "Feels Like: " + weatherContainer.main?.feelsLike?.toString() ?: na
+            tvForecast.text = weatherContainer.weather?.first()?.main ?: na
+            tvForecastDescription.text = weatherContainer.weather?.first()?.description ?: na
+
         }
     }
 }
